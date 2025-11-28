@@ -2,12 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const APIURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 export default function AllBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/books/fetch")
+      .get(`${APIURL}/api/books/fetch`)
       .then((res) => {
         console.log("API RESPONSE:", res.data);
         setBooks(res.data.result); // ✅ FIX: because array name = result

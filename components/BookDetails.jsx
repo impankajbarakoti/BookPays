@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const APIURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 export default function BookDetails() {
   const [book, setBook] = useState(null);
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ export default function BookDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/books/${id}`)
+      .get(`${APIURL}/api/books/${id}`)
       .then((res) => setBook(res.data))
       .catch((err) => console.log(err));
   }, [id]);
