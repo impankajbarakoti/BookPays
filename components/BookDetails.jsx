@@ -142,7 +142,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const APIURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const APIURL = "https://backend-pdf-svol.onrender.com";
 // const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 const RAZORPAY_KEY = "rzp_test_RlrtoWiuoBfg3E";
 
@@ -185,14 +185,14 @@ axios
   .then(({ data }) => {
     const options = {
       key: RAZORPAY_KEY,
-      amount: data.amount, // already in paise
+      amount: data.amount, // already in paisezzzz
       currency: data.currency,
       name: book.title,
       description: "Book Purchase",
       order_id: data.id,
       handler: function (response) {
         axios
-          .post(`http://localhost:5000/api/payments/verify`, {
+          .post(`${APIURL}/api/payments/verify`, {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
