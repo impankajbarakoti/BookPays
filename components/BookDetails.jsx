@@ -179,7 +179,7 @@ export default function BookDetails() {
     
 
 axios
-  .post(`http://localhost:5000/api/payments/create-order`, {
+  .post(`${APIURL}/api/payments/create-order`, {
     amount: finalAmount, // number
   })
   .then(({ data }) => {
@@ -192,7 +192,7 @@ axios
       order_id: data.id,
       handler: function (response) {
         axios
-          .post(`http://localhost:5000/api/payments/verify`, {
+          .post(`${APIURL}/api/payments/verify`, {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
