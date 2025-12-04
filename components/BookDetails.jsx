@@ -142,9 +142,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const APIURL = "https://backend-pdf-svol.onrender.com";
+const APIURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 // const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
-const RAZORPAY_KEY = "rzp_test_RlrtoWiuoBfg3E";
+const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 export default function BookDetails() {
   const [book, setBook] = useState(null);
@@ -192,7 +192,7 @@ axios
       order_id: data.id,
       handler: function (response) {
         axios
-          .post(`http://localhost:5000/api/payments/verify`, {
+          .post(`${APIURL}/api/payments/verify`, {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
@@ -204,7 +204,7 @@ axios
             navigate("/success");
           })
           .catch((err) => {
-            console.log(err.response?.data); // show backend error
+            console.log(err); // show backend error
             alert("Payment verification failed");
           });
       },
@@ -270,7 +270,7 @@ axios
           {/* BUY BUTTON */}
           <button
             onClick={openRazorpay}
-            className="block w-full py-3 bg-black text-white rounded-md hover:bg-gray-800 transition"
+            className="block w-full py-3 bg-black text-white cursor-pointer rounded-md hover:bg-gray-800 transition"
           >
             {book.buttonText || "Buy Now"}
           </button>
