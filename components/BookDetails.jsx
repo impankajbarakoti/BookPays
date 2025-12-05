@@ -185,7 +185,7 @@ axios
   .then(({ data }) => {
     const options = {
       key: RAZORPAY_KEY,
-      amount: data.amount, // already in paisezzzz
+      amount: data.amount,
       currency: data.currency,
       name: book.title,
       description: "Book Purchase",
@@ -241,7 +241,9 @@ axios
         {/* RIGHT CONTENT */}
         <div>
           <h3 className="text-xl font-semibold mb-2">Description</h3>
-          <p className="text-gray-700 mb-6 leading-relaxed">{book.description}</p>
+          <p className="text-gray-700 mb-6 leading-relaxed">
+            {book.description}
+          </p>
 
           <h3 className="text-xl font-semibold mb-3">Price</h3>
 

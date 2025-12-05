@@ -51,7 +51,7 @@ export default function AllBooks() {
                 View Book
               </a> */}
               <a
-                href={`/book/${book._id}`} // This links to the dynamic book detail page
+                href={`/book/${book._id}`}
                 className="block w-full text-center py-2 bg-black text-white rounded-md hover:bg-gray-800 transition"
               >
                 View Book
